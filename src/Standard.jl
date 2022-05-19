@@ -1,7 +1,4 @@
-module LLPStandard
-export llpdata,build
-
-const llpdata=[
+([
 	"1"=>Level("简介",7,7,
 	()->begin
 		fill!(grids::Matrix,nothing)
@@ -208,6 +205,6 @@ end
 		else return true end
 		return false
 	end)
-]
-build()=nothing
-end
+],
+()->nothing
+)
