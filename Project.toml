@@ -1,5 +1,5 @@
 name = "Standard"
-version = "1.0.1"
+version = "1.1.0"
 uuid = "48dfdac6-1441-5286-aaf7-5d1c4b3d8e80"
 description = "标准关卡包 | 与JuliaRoadmap联动"
 
@@ -7,4 +7,4 @@ description = "标准关卡包 | 与JuliaRoadmap联动"
 "语法基础" = ["1","2","3","4","5","6"]
 
 [compat]
-LightLearn = "2.0"
+LightLearn = "2.1"

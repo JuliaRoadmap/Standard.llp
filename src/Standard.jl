@@ -1,3 +1,4 @@
+include("types.jl")
 ([
 	"1"=>Level("简介",7,7,
 	()->begin
@@ -90,7 +91,7 @@ end
 # 信息
 你的面前有一个密码锁\
 它的密码是1~10之间的一个整数\
-你可以使用`guess(1,2,猜测的数n)`进行猜测
+你可以使用`send(:guess,1,2,猜测的数n)`进行猜测
 # 目标
 如果你猜对了，请在锁位置向下走n步
 如果猜错了，锁会抛出异常，你必须进行处理
@@ -99,7 +100,7 @@ end
 
 !!! note
 	你不能移动到锁上\
-	当且仅当你处在`(x,y)`或它的的4个相邻格时，可以用`guess(x,y,v)`提交你的猜测
+	当且仅当你处在`(x,y)`或它的的4个相邻格时，可以用`send(:guess,x,y,v)`提交你的猜测
 		""")
 		val=rand(1:10)
 		grids[1,2]=Lock(
@@ -128,7 +129,7 @@ end
 解锁，锁的密码是各骰子掷得的值之和
 # 示例
 ```jl
-function mvs(n::Int) # 向下移动n步
+function south(n::Int) # 向下/南移动n步
 	for i in 1:n
 		mvs()
 	end
@@ -166,7 +167,7 @@ end
 ```jl
 function task1()
 	v=pop!(look(4,2))
-	mvd(6)
+	east(6)
 	push!(look(10,2),v)
 end
 ```
@@ -206,5 +207,13 @@ end
 		return false
 	end)
 ],
-()->nothing
+()->begin
+	cd(@__DIR__)
+	cd("../img/")
+	load_imgsource("flag","flag.png")
+	load_imgsource("info","info.png")
+	load_imgsource("dice","dice.png")
+	load_imgsource("lock","lock.png")
+	load_imgsource("ply","ply.png")
+end
 )
