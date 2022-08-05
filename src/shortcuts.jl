@@ -4,7 +4,7 @@ function tp!(st, x, y)
 end
 chkpos(st, x, y)= (st.x==x && st.y==y)
 function docs(st, fname)
-	str = cd(joinpath(@__DIR__, "../")) do
+	str = cd(joinpath(@__DIR__, "..")) do
 		read(fname, String)
 	end
 	return st.mdparser(str)

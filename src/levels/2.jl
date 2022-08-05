@@ -2,7 +2,7 @@ const lv_state = Level("条件的使用",
 	(st) -> begin
 		tp!(st, 7, 7)
 		grids=st.grids
-		initial!(grids)
+		clear!(grids)
 		grids[7, 7]=Info(docs(st, "2.md"))
 		grids[7, 8]=Dice()
 		grids[7, 10]=Flag()
