@@ -1,39 +1,5 @@
 include("types.jl")
 ([
-	"1"=>Level("简介",7,7,
-	()->begin
-		fill!(grids::Matrix,nothing)
-		grids[7,7]=Info(md"""
-# 信息
-你可以在 do ... end 间使用函数
-```jl
-mvw() 向上移动
-mva() 向左移动
-mvs() 向下移动
-mvd() 向右移动
-```
-# 目标
-移动到旗帜处
-# 示例
-```jl
-submit() do
-	mvs()
-	mvs()
-	mvs()
-	mvd()
-	mvd()
-	mvd()
-end
-```
-
-!!! note
-	窗口会进行延时动画演示
-		""")
-		grids[10,10]=Flag()
-	end,
-	()->begin
-		return plyx==10&&plyy==10
-	end),
 	"2"=>Level("条件的使用",7,7,
 	()->begin
 		fill!(grids::Matrix,nothing)
