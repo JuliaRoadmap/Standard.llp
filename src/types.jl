@@ -1,19 +1,17 @@
-struct Flag end
-show_grid(ctx::DContext,::Flag,x::Int,y::Int)=fill_image(ctx,"flag",x+9,y+2)
+struct Flag<:Cell end
+_show(::Flag, st, x, y)= fill_image(st, "flag", x+9, y+2)
 
-struct Info s::Markdown.MD end
-function plyenter(i::Info)
-	if !formal
-		display(i.s)
+struct Info<:Cell s end
+_show(::Info, st, x, y)= fill_image(st, "info", x+11, y+2)
+function ev_enter(st, c::Info)
+	if !st.formal
+		print(term(c.s))
 	end
 end
-show_grid(ctx::DContext,::Info,x::Int,y::Int)=fill_image(ctx,"info",x+11,y+2)
 
-struct Dice end
-function plyenter(::Dice)
-	grids[plyx,plyy]=rand(1:6)
-end
-show_grid(ctx::DContext,::Dice,x::Int,y::Int)=fill_image(ctx,"dice",x+4,y+4)
+struct Dice<:Cell end
+_show(::Info, st, x, y)= fill_image(st, "dice", x+4, y+4)
+ev_enter(st, ::Dice)= st.grids[st.x, st.y]=rand(1:6)
 
 struct Lock
 	onguess::Function

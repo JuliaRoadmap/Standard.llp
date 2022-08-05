@@ -1,72 +1,12 @@
+module LL_Standard
 include("types.jl")
+include("shortcuts.jl")
+end # module
 ([
-	"2"=>Level("条件的使用",7,7,
-	()->begin
-		fill!(grids::Matrix,nothing)
-		grids[7,7]=Info(md"""
-# 信息
-没错，这里有2个旗帜。\
-去哪一个呢？
-# 目标
-看到那个骰子了吗？你走过去，在它的原位置就会产生一个整数（通过`look(7,8)`获取）\
-若掷到1、3、5，就去右边的旗帜\
-否则，就去下面的旗帜
-
-!!! note
-	当且仅当你处在`(x,y)`或它的4个相邻格时，可以用`look(x,y)`获取`(x,y)`处值
-		""")
-		grids[7,8]=Dice()
-		grids[7,10]=Flag()
-		grids[10,8]=Flag()
-	end,
-	()->begin
-		v=grids[7,8]
-		if !isa(v,Int)
-			println("先掷骰子！")
-			return false
-		else
-			return v&2==1 ? (plyx==10&&plyy==8) : (plyx==7&&plyy==10)
-		end
-	end),
-	"3"=>Level("循环的使用",1,1,
-	()->begin
-		fill!(grids::Matrix,nothing)
-		@inbounds for i in 2:15
-			for j in 2:2:14
-				grids[i,j]=Solid()
-			end
-		end
-		grids[1,2]=grids[1,6]=grids[1,10]=grids[1,14]=grids[16,4]=grids[16,8]=grids[16,12]=Solid()
-		grids[1,1]=Info(md"""
-# 信息
-你可以看到，这里的有许多深色方格，它们是墙\
-这里的地形似乎有些类似？\
-为了省力，你可以用什么呢？
-# 目标
-移动到旗帜处
-		""")
-		grids[1,16]=Flag()
-	end,
-	()->begin
-		return plyx==1&&plyy==16
-	end),
 	"4"=>Level("异常处理",1,1,
 	()->begin
 		fill!(grids::Matrix,nothing)
 		grids[1,1]=Info(md"""
-# 信息
-你的面前有一个密码锁\
-它的密码是1~10之间的一个整数\
-你可以使用`send(:guess,1,2,猜测的数n)`进行猜测
-# 目标
-如果你猜对了，请在锁位置向下走n步
-如果猜错了，锁会抛出异常，你必须进行处理
-!!! warning
-	除特殊注明外，禁止使用异常处理
-
-!!! note
-	你不能移动到锁上\
-	当且仅当你处在`(x,y)`或它的的4个相邻格时，可以用`send(:guess,x,y,v)`提交你的猜测
 		""")
 		val=rand(1:10)
 		grids[1,2]=Lock(
@@ -88,19 +28,6 @@ include("types.jl")
 	()->begin
 		fill!(grids::Matrix,nothing)
 		grids[2,2]=Info(md"""
-# 信息
-你是否厌倦了不断地调用`mvs()`或写半天的循环代码？\
-你可以把一些功能包装在函数中
-# 目标
-解锁，锁的密码是各骰子掷得的值之和
-# 示例
-```jl
-function south(n::Int) # 向下/南移动n步
-	for i in 1:n
-		mvs()
-	end
-end
-```
 		""")
 		grids[7,2]=grids[5,6]=grids[6,9]=Dice()
 		grids[15,15]=Lock(
@@ -142,7 +69,6 @@ end
 	你不能移动到箱子上\
 	请严格按照要求执行
 		""")
-		R8=(r::Int,g::Int,b::Int)->RGB{N0f8}(reinterpret(N0f8,UInt8(r)),reinterpret(N0f8,UInt8(g)),reinterpret(N0f8,UInt8(b)))
 
 		v1=Vector(undef,2)
 		v1[2]=private[:v1]=rand(0:255)
