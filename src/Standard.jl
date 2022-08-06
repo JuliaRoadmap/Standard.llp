@@ -9,9 +9,9 @@ include("levels/4.jl")
 include("levels/5.jl")
 include("levels/6.jl")
 
-function __init__()
+function init(st)
 	cd(joinpath(@__DIR__, "../assets")) do
-		load_imgsources("images")
+		load_imgsources(st, "images")
 	end
 end
 
