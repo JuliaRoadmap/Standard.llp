@@ -1,4 +1,4 @@
-const lv_state = Level("条件的使用",
+const lv_state = Level(
 	(st) -> begin
 		tp!(st, 7, 7)
 		grids=st.grids
