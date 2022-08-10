@@ -9,7 +9,7 @@ const lv_vector = Level(
 		v1=Vector(undef, 2)
 		v1[2]=pr[:v1]=rand(0:255)
 		grids[4, 2]=Box(v1, r8(157,213,234), r8(0,162,232))
-		grids[10, 2]=Box(Vector(undef, 1), r8(0,162,232), R8(157,213,234))
+		grids[10, 2]=Box(Vector(undef, 1), r8(0,162,232), r8(157,213,234))
 
 		v2=Vector(undef, 2)
 		v2[1]=pr[:v2]=rand(0:255)

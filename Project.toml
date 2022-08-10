@@ -1,5 +1,5 @@
 name = "Standard"
-version = "2.0.0-alpha"
+version = "2.0.0"
 uuid = "48dfdac6-1441-5286-aaf7-5d1c4b3d8e80"
 description = "标准关卡包 | 与JuliaRoadmap联动"
 

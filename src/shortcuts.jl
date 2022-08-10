@@ -4,10 +4,10 @@ function tp!(st, x, y)
 end
 chkpos(st, x, y)= (st.x==x && st.y==y)
 function docs(st, fname)
-	str = cd(joinpath(@__DIR__, "..")) do
+	str = cd(joinpath(@__DIR__, "../docs")) do
 		read(fname, String)
 	end
-	return st.mdparser(str)
+	return st.private[:mdparser](str)
 end
 function r8(r::Int, g::Int, b::Int)
 	r0=reinterpret(N0f8, UInt8(r))

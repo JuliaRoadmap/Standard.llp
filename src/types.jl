@@ -10,14 +10,14 @@ function ev_enter(st, c::Info)
 end
 
 struct Dice<:Cell end
-_show(st, ::Info, x, y)= fill_image(st, "dice", x+4, y+4)
+_show(st, ::Dice, x, y)= fill_image(st, "dice", x+4, y+4)
 ev_enter(st, ::Dice)= st.grids[st.x, st.y]=NumCell(rand(1:6))
 
 struct Lock<:Cell
 	onguess::Function
 end
 _solid(::Lock)=true
-_show(st, ::Info, x, y)= fill_image(st, "lock", x+3, y+3)
+_show(st, ::Lock, x, y)= fill_image(st, "lock", x+3, y+3)
 function _send(st, ::Lock, ::Val{:guess}, v)
 	i.onguess(st, v)
 end
